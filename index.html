@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carl Audio Player</title>
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
+    <!-- GG FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GG ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <!-- PAGE CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="audio__bg">
+      <div class="audio__title">
+        <div class="audio__title--poster"></div>
+        <h3 class="audio__title--song"></h3>
+        <h5 class="audio__title--artist"></h5>
+      </div>
+      <div class="audio__controls">
+        <span class="loader"></span>
+        <div class="audio__controls--progress">
+          <input
+            type="range"
+            name="track-progress"
+            id="trackProgressId"
+            class="track-progress"
+            min="0"
+            max="100"
+            step="0.5"
+          />
+        </div>
+        <div class="audio__controls--buttons">
+          <span class="material-symbols-outlined shuffle-mode"> shuffle </span>
+          <i class="fa-solid fa-backward-step"></i>
+          <i class="fa-solid fa-play play-pause"></i>
+          <i class="fa-solid fa-forward-step"></i>
+          <span class="material-symbols-outlined repeat-mode"> repeat </span>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>
