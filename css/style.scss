@@ -7,7 +7,7 @@
 }
 
 .d-none {
-  display: none;
+  display: none!important;
 }
 
 /***** End RESET *****/
@@ -15,7 +15,7 @@ $audio-control-font-size: 50px;
 $audio-control-color: #ffffff;
 
 @mixin audio-bg {
-  background: url(../img/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products.jpg);
+  background: url(../img/vivid-blurred-colorful-wallpaper-background.jpg);
   background-size: cover;
   height: 100vh;
 }
@@ -25,9 +25,32 @@ body
   margin: 0!important;
   .audio__bg {
     @include audio-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .audio__title {
+      transform: translateY(-30px);
+      text-align: center;
+      .audio__title--poster {
+        margin-bottom: 30px;
+        img {
+          width: 200px;
+          height: auto;
+        }
+      }
 
+      .audio__title--song {
+        color: $audio-control-color;
+        font-size: 40px;
+        text-align: center;
+      }
+
+      .audio__title--artist {
+        color: $audio-control-color;
+        font-size: 20px;
+        text-align: center;
+      }
     }
 
     .audio__controls {

@@ -6,7 +6,7 @@
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 /***** End RESET *****/
@@ -14,9 +14,33 @@ body {
   margin: 0 !important;
 }
 body .audio__bg {
-  background: url(../img/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products.jpg);
+  background: url(../img/vivid-blurred-colorful-wallpaper-background.jpg);
   background-size: cover;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body .audio__bg .audio__title {
+  transform: translateY(-30px);
+  text-align: center;
+}
+body .audio__bg .audio__title .audio__title--poster {
+  margin-bottom: 30px;
+}
+body .audio__bg .audio__title .audio__title--poster img {
+  width: 200px;
+  height: auto;
+}
+body .audio__bg .audio__title .audio__title--song {
+  color: #ffffff;
+  font-size: 40px;
+  text-align: center;
+}
+body .audio__bg .audio__title .audio__title--artist {
+  color: #ffffff;
+  font-size: 20px;
+  text-align: center;
 }
 body .audio__bg .audio__controls {
   width: 100%;

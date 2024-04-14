@@ -13,9 +13,17 @@ export class MusicController {
   #isShuffle = false;
   #isPlaying = false;
   #loopType = LoopType.None;
-  #updateTimer;
 
+  // These class names must be included in corresponding elements in html code
   #progressElement = document.querySelector(".track-progress");
+  #playBtn = document.querySelector(".track-play-pause");
+  #nextBtn = document.querySelector(".track-forward-step");
+  #prevBtn = document.querySelector(".track-backward-step");
+  #repeatBtn = document.querySelector(".track-repeat-mode");
+  #shuffleBtn = document.querySelector(".track-shuffle-mode");
+  #trackTitle = document.querySelector(".track-title");
+  #trackArtist = document.querySelector(".track-artist");
+  #trackPoster = document.querySelector(".track-poster");
 
   constructor(list, startIndex = 0) {
     this.#trackList = list;
@@ -33,11 +41,15 @@ export class MusicController {
   playTrack = () => {
     this.#isPlaying = true;
     this.#audioElement.play();
+    this.#playBtn.classList.add("fa-pause");
+    this.#playBtn.classList.remove("fa-play");
   };
 
   pauseTrack = () => {
     this.#isPlaying = false;
     this.#audioElement.pause();
+    this.#playBtn.classList.add("fa-play");
+    this.#playBtn.classList.remove("fa-pause");
   };
   /*** End Play/Pause methods ***/
 
@@ -139,14 +151,56 @@ export class MusicController {
     return this.#audioElement.currentTime;
   };
 
+  setCurrentTime = (time) => {
+    if (time > this.#audioElement.duration) throw new Error("Set invalid time");
+    this.#audioElement.currentTime = time;
+  };
+
   getTrackDuration = () => {
     return this.#audioElement.duration;
   };
 
-  setCurrenTime = (time) => {
-    if (time > this.#audioElement.duration) throw new Error("Set invalid time");
-    this.#audioElement.currentTime = time;
+  getTrackName = () => {
+    if (this.#isShuffle) {
+      return this.#shuffleList[this.#trackIndex].name;
+    }
+    return this.#trackList[this.#trackIndex].name;
   };
+
+  getTrackArtist = () => {
+    if (this.#isShuffle) {
+      return this.#shuffleList[this.#trackIndex].artist;
+    }
+    return this.#trackList[this.#trackIndex].artist;
+  };
+
+  getTrackPoster = () => {
+    if (this.#isShuffle) {
+      return this.#shuffleList[this.#trackIndex].poster;
+    }
+    return this.#trackList[this.#trackIndex].poster;
+  };
+
+  updateTitles = () => {
+    this.#trackTitle.textContent = this.getTrackName();
+    this.#trackArtist.textContent = this.getTrackArtist();
+  };
+
+  createPoster = () => {
+    this.removePoster();
+    const trackPosterImg = document.createElement("img");
+    trackPosterImg.src = this.getTrackPoster();
+    trackPosterImg.classList.add("track-poster-img");
+    this.#trackPoster.appendChild(trackPosterImg);
+  };
+
+  removePoster = () => {
+    const poster = document.querySelector(".track-poster-img");
+    if (this.#trackPoster.contains(poster)) {
+      this.#trackPoster.querySelector(".track-poster-img").remove();
+    }
+  };
+
   /*** End For Display Methods ***/
 
   /*** Handle Track methods ***/
@@ -155,7 +209,6 @@ export class MusicController {
    * @param {*} index must be between 0 and (trackList.length - 1)
    */
   loadTrack = (index) => {
-    clearInterval(this.#updateTimer);
     if (!this.#isShuffle) {
       this.#audioElement.src = this.#trackList[index].link;
     } else {
@@ -164,6 +217,9 @@ export class MusicController {
     this.#audioElement.load();
     this.#isPlaying = !this.#audioElement.paused;
     console.log(`Playing ${this.#audioElement.src}`);
+
+    this.updateTitles();
+    this.createPoster();
   };
 
   nextTrack = () => {
@@ -196,6 +252,7 @@ export class MusicController {
           if (this.#trackIndex === this.#trackList.length - 1) {
             this.setTrackIndex(0);
             this.loadTrack(this.#trackIndex);
+            this.pauseTrack();
           } else {
             this.nextTrack();
           }
@@ -207,6 +264,87 @@ export class MusicController {
 
         default:
           throw new Error(`${this.#loopType} is not a valid type of loop`);
+      }
+    });
+
+    /**
+     * Play or pause
+     */
+    this.#playBtn.addEventListener("click", () => {
+      if (this.getPlayStatus()) {
+        this.pauseTrack();
+      } else {
+        this.playTrack();
+      }
+    });
+
+    window.addEventListener("keyup", (e) => {
+      if (e.code == "Space") {
+        if (this.getPlayStatus()) {
+          this.pauseTrack();
+          this.#playBtn.classList.add("fa-play");
+          this.#playBtn.classList.remove("fa-pause");
+        } else {
+          this.playTrack();
+          this.#playBtn.classList.add("fa-pause");
+          this.#playBtn.classList.remove("fa-play");
+        }
+      }
+    });
+
+    /**
+     * Next track, auto play
+     */
+    this.#nextBtn.addEventListener("click", () => {
+      this.nextTrack();
+      this.#playBtn.classList.add("fa-pause");
+      this.#playBtn.classList.remove("fa-play");
+    });
+
+    /**
+     * Previous track, autoplay
+     */
+    this.#prevBtn.addEventListener("click", () => {
+      this.prevTrack();
+      this.#playBtn.classList.add("fa-pause");
+      this.#playBtn.classList.remove("fa-play");
+    });
+
+    /**
+     * Set Loop type
+     */
+    this.#repeatBtn.addEventListener("click", () => {
+      switch (this.getLoopType()) {
+        case LoopType.None:
+          this.setLoopType(LoopType.LoopAll);
+          this.#repeatBtn.textContent = "repeat_on";
+          break;
+
+        case LoopType.LoopAll:
+          this.setLoopType(LoopType.LoopOne);
+          this.#repeatBtn.textContent = "repeat_one_on";
+          break;
+
+        case LoopType.LoopOne:
+          this.setLoopType(LoopType.None);
+          this.#repeatBtn.textContent = "repeat";
+          break;
+
+        default:
+          throw new Error("Do not regconize the loop type");
+      }
+    });
+
+    /**
+     * Shuffle mode
+     */
+    this.#shuffleBtn.addEventListener("click", () => {
+      if (this.getShuffle()) {
+        this.unsetShuffle();
+        this.#shuffleBtn.textContent = "shuffle";
+      } else {
+        this.setShuffle();
+        this.#shuffleBtn.textContent = "shuffle_on";
       }
     });
   };

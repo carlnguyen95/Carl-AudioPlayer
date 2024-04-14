@@ -2,26 +2,31 @@
   {
     "name": "War Machine",
     "artist": "This Public Life",
-    "link": "https://od.lk/s/MTJfMjAzNjMzMDZf/war_machine_-_This_Public_Life.mp3"
+    "link": "https://od.lk/s/MTJfMjAzNjMzMDZf/war_machine_-_This_Public_Life.mp3",
+    "poster": "https://i.ibb.co/jyJ2n6d/this-public-life.jpg"
   },
   {
     "name": "One Way Out",
     "artist": "Heifervescent",
-    "link": "https://od.lk/s/MTJfMjAzNjMzMTdf/One_Way_Out_-_Heifervescent.mp3"
+    "link": "https://od.lk/s/MTJfMjAzNjMzMTdf/One_Way_Out_-_Heifervescent.mp3",
+    "poster": "https://i.ibb.co/gMFRRhG/Heifervescent.jpg"
   },
   {
     "name": "Breathe",
     "artist": "Bellevue",
-    "link": "https://od.lk/s/MTJfMjA0MDMyMDZf/Breathe_-_Bellevue.mp3"
+    "link": "https://od.lk/s/MTJfMjA0MDMyMDZf/Breathe_-_Bellevue.mp3",
+    "poster": "https://i.ibb.co/jyJ2n6d/this-public-life.jpg"
   },
   {
     "name": "Star Light",
     "artist": "XENEZE",
-    "link": "https://od.lk/s/MTJfMjA0MDM0MzVf/XENEZE_-_XENEZE_-_Starlight.mp3"
+    "link": "https://od.lk/s/MTJfMjA0MDM0MzVf/XENEZE_-_XENEZE_-_Starlight.mp3",
+    "poster": "https://i.ibb.co/c1CD8tb/Xeneze-starlight.png"
   },
   {
     "name": "I need You Love",
     "artist": "BASXHKZIR",
-    "link": "https://od.lk/s/MTJfMjA0MDM2NThf/BASXHKZIR_-_BASXHKZIR_-_I_Need_You_Love.mp3"
+    "link": "https://od.lk/s/MTJfMjA0MDM2NThf/BASXHKZIR_-_BASXHKZIR_-_I_Need_You_Love.mp3",
+    "poster": "https://i.ibb.co/jyJ2n6d/this-public-life.jpg"
   }
 ]

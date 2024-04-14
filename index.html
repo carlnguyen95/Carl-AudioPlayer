@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carl Audio Player</title>
+    <link rel="shortcut icon" href="./img/Carl_logo.png" type="image/x-icon" />
+
+    <link
+      rel="preload"
+      as="image"
+      href="https://i.ibb.co/c1CD8tb/Xeneze-starlight.png"
+    />
 
     <!-- FONT AWESOME -->
     <link
@@ -31,9 +38,9 @@
   <body>
     <div class="audio__bg">
       <div class="audio__title">
-        <div class="audio__title--poster"></div>
-        <h3 class="audio__title--song"></h3>
-        <h5 class="audio__title--artist"></h5>
+        <div class="audio__title--poster track-poster"></div>
+        <h3 class="audio__title--song track-title"></h3>
+        <h5 class="audio__title--artist track-artist"></h5>
       </div>
       <div class="audio__controls">
         <span class="loader"></span>
@@ -49,11 +56,15 @@
           />
         </div>
         <div class="audio__controls--buttons">
-          <span class="material-symbols-outlined shuffle-mode"> shuffle </span>
-          <i class="fa-solid fa-backward-step"></i>
-          <i class="fa-solid fa-play play-pause"></i>
-          <i class="fa-solid fa-forward-step"></i>
-          <span class="material-symbols-outlined repeat-mode"> repeat </span>
+          <span class="material-symbols-outlined track-shuffle-mode">
+            shuffle
+          </span>
+          <i class="fa-solid fa-backward-step track-backward-step"></i>
+          <i class="fa-solid fa-play track-play-pause"></i>
+          <i class="fa-solid fa-forward-step track-forward-step"></i>
+          <span class="material-symbols-outlined track-repeat-mode">
+            repeat
+          </span>
         </div>
       </div>
     </div>
